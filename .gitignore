@@ -18,6 +18,10 @@
 *.swp
 .env
 bin/stubs
+bin/rails
+bin/rake
+bin/rspec
+bin/spring
 coverage/*
 public/system
 rerun.txt
