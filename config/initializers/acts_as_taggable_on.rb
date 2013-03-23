@@ -6,7 +6,7 @@ ActsAsTaggableOn::Tag.class_eval do
   friendly_id :name,
     use: :slugged,
     slug_column: :slug,
-    reserved_words: %w(show edit create update destroy)
+    reserved_words: %w(show edit create update destroy none)
 
   def self.slugged_any(list)
     where(list.map { |tag| sanitize_sql(["slug = ?", tag.to_s.mb_chars]) }.join(" OR "))
@@ -14,7 +14,6 @@ ActsAsTaggableOn::Tag.class_eval do
 end
 
 module ActsAsTaggableOn::Taggable
-
   module Core
     module ClassMethods
       def tagged_with_slugs(tags, options = {})

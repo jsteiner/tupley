@@ -30,4 +30,17 @@ feature 'User creates a task' do
       expect(page).to have_content 'purchases'
     end
   end
+
+  scenario "they can't create a 'none' tag" do
+    sign_in
+
+    task = create_task do
+      tag_list 'none'
+    end
+
+    within 'ol.tags' do
+      expect(page).to have_content 'shopping'
+      expect(page).to have_content 'purchases'
+    end
+  end
 end

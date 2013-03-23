@@ -14,4 +14,7 @@
       <%= link_to tag.name, tag_path(tag) %>
     </li>
   <% end %>
+  <% if current_user.tasks_without_tags.any? %>
+    <li class='tag'><%= link_to 'none', none_tag_path %></li>
+  <% end %>
 </ol>
