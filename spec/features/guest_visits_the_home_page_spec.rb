@@ -5,4 +5,9 @@ feature 'Guest visits the home page' do
     visit root_path
     expect(page).to have_css "[data-role='logo']", text: 'tupley'
   end
+
+  scenario 'they see a sign in link' do
+    visit root_path
+    expect(page).to have_content 'Sign in'
+  end
 end

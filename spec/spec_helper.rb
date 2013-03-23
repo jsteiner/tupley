@@ -9,6 +9,7 @@ RSpec.configure do |config|
   config.use_transactional_fixtures = false
   config.infer_base_class_for_anonymous_controllers = true
   config.order = "random"
+  config.include Features, type: :feature
 end
 
 Capybara.javascript_driver = :webkit

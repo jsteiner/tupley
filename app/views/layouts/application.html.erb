@@ -8,8 +8,19 @@
   <%= csrf_meta_tags %>
 </head>
 <body class="<%= body_class %>">
-  <h1 data-role='logo'><%= link_to 'tupley', root_path %></h1>
-  <%= render 'flashes' -%>
+  <header>
+    <h1 data-role='logo'><%= link_to 'tupley', root_path %></h1>
+    <%= render 'flashes' -%>
+
+    <div class='session-links'>
+      <% if signed_in? %>
+        <%= current_user.email %>
+        <%= link_to 'Sign out', sign_out_path, method: :delete %>
+      <% else %>
+        <%= link_to 'Sign in', sign_in_path %>
+      <% end %>
+    </div>
+  </header>
 
   <%= yield %>
 

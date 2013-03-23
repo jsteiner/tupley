@@ -2,6 +2,7 @@ source 'https://rubygems.org'
 
 ruby '2.0.0'
 
+gem 'clearance', '1.0.0.rc6'
 gem 'bourbon'
 gem 'flutie'
 gem 'high_voltage'
