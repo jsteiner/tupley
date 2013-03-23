@@ -22,6 +22,13 @@ module Features
       self
     end
 
+    def delete
+      within task_element do
+        click_link 'delete'
+        click_link 'destroy'
+      end
+    end
+
     def name(new_name)
       @name = new_name
     end
@@ -31,7 +38,7 @@ module Features
     end
 
     def visible?
-      task_element.visible?
+      task_list.has_css? 'li', text: name_value
     end
 
     def has_tag?(tag)

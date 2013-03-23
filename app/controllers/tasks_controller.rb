@@ -10,6 +10,13 @@ class TasksController < ApplicationController
     redirect_to :back, notice: 'Task saved successfully'
   end
 
+  def destroy
+    task = current_user.tasks.find(params[:id])
+    task.destroy
+
+    redirect_to root_path
+  end
+
   private
 
   def task_params

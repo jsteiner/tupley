@@ -5,19 +5,7 @@
 <% end %>
 
 <ol class='tasks'>
-  <% @tasks.each do |task| %>
-    <li class='task'>
-      <%= task.name %>
-
-      <ul class='tags'>
-        <% task.tags.each do |tag| %>
-          <li class='tag'>
-            <%= link_to tag.name, tag_path(tag) %>
-          </li>
-        <% end %>
-      </ul>
-    </li>
-  <% end %>
+  <%= render @tasks %>
 </ol>
 
 <ol class='tags'>

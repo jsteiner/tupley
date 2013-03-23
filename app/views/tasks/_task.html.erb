@@ -1,0 +1,20 @@
+<li class='task'>
+  <%= task.name %>
+
+  <ul class='tags'>
+    <% task.tags.each do |tag| %>
+      <li class='tag'>
+        <%= link_to tag.name, tag_path(tag) %>
+      </li>
+    <% end %>
+  </ul>
+
+  <span class='delete-task'>
+    <a href="#" class='delete-link'>delete</a>
+    <span class='delete-confirmation'>
+      <a href= "#" class='cancel-link'>cancel</a>
+      /
+      <%= link_to 'destroy', task, method: :delete, class: 'destroy-link' %>
+    </span>
+  </span>
+</li>

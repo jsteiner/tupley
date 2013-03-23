@@ -1,7 +1,7 @@
 Tupley::Application.routes.draw do
   constraints Clearance::Constraints::SignedIn.new do
     get 'tags/:tags' => 'tags#show', as: :tag
-    resources :tasks, only: [:create]
+    resources :tasks, only: [:create, :destroy]
     root to: 'tasks#index'
   end
 
