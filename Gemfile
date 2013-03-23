@@ -6,6 +6,7 @@ gem 'acts-as-taggable-on'
 gem 'clearance', '1.0.0.rc6'
 gem 'bourbon'
 gem 'flutie'
+gem 'friendly_id'
 gem 'high_voltage'
 gem 'jquery-rails'
 gem 'pg'
@@ -33,6 +34,7 @@ group :development, :test do
   gem 'factory_girl_rails'
   gem 'rspec-rails'
   gem 'sham_rack'
+  gem 'pry-rails'
 end
 
 group :test do

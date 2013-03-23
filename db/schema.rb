@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130323165833) do
+ActiveRecord::Schema.define(:version => 20130323180556) do
 
   create_table "taggings", :force => true do |t|
     t.integer  "tag_id"
@@ -28,6 +28,7 @@ ActiveRecord::Schema.define(:version => 20130323165833) do
 
   create_table "tags", :force => true do |t|
     t.string "name"
+    t.string "slug"
   end
 
   create_table "tasks", :force => true do |t|
