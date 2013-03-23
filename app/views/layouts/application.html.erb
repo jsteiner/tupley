@@ -8,8 +8,11 @@
   <%= csrf_meta_tags %>
 </head>
 <body class="<%= body_class %>">
+  <h1 data-role='logo'><%= link_to 'tupley', root_path %></h1>
   <%= render 'flashes' -%>
+
   <%= yield %>
+
   <%= render 'javascript' %>
 </body>
 </html>
