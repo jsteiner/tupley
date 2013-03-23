@@ -1,5 +1,6 @@
 <%= simple_form_for Task.new do |form| %>
   <%= form.input :name, label: false %>
+  <%= form.input :tag_list, label: false %>
   <%= form.submit %>
 <% end %>
 
@@ -7,6 +8,20 @@
   <% @tasks.each do |task| %>
     <li class='task'>
       <%= task.name %>
+
+      <ul class='tags'>
+        <% task.tags.each do |tag| %>
+          <li class='tag'><%= tag.name %></li>
+        <% end %>
+      </ul>
+    </li>
+  <% end %>
+</ol>
+
+<ol class='tags'>
+  <% @tags.each do |tag| %>
+    <li class='tag'>
+      <%= tag.name %>
     </li>
   <% end %>
 </ol>

@@ -6,4 +6,28 @@ feature 'User creates a task' do
     task = create_task
     expect(task).to be_visible
   end
+
+  scenario "they see the task's tags" do
+    sign_in
+
+    task = create_task do
+      tag_list 'shopping, purchases'
+    end
+
+    expect(task).to have_tag 'shopping'
+    expect(task).to have_tag 'purchases'
+  end
+
+  scenario "they see the task's tags in the user's tag list" do
+    sign_in
+
+    task = create_task do
+      tag_list 'shopping, purchases'
+    end
+
+    within 'ol.tags' do
+      expect(page).to have_content 'shopping'
+      expect(page).to have_content 'purchases'
+    end
+  end
 end
