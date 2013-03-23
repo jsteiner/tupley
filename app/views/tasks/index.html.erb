@@ -1,0 +1,12 @@
+<%= simple_form_for Task.new do |form| %>
+  <%= form.input :name, label: false %>
+  <%= form.submit %>
+<% end %>
+
+<ol class='tasks'>
+  <% @tasks.each do |task| %>
+    <li class='task'>
+      <%= task.name %>
+    </li>
+  <% end %>
+</ol>

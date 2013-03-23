@@ -10,4 +10,9 @@ feature 'Guest visits the home page' do
     visit root_path
     expect(page).to have_content 'Sign in'
   end
+
+  scenario 'they do not see a new task form' do
+    visit root_path
+    expect(page).not_to have_css 'form#new_task'
+  end
 end
