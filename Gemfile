@@ -2,7 +2,6 @@ source 'https://rubygems.org'
 
 ruby '2.0.0'
 
-gem 'airbrake'
 gem 'bourbon'
 gem 'flutie'
 gem 'high_voltage'
@@ -25,7 +24,6 @@ end
 group :development do
   gem 'foreman'
   gem 'better_errors'
-  gem 'binding_of_caller'
 end
 
 group :development, :test do
@@ -40,10 +38,4 @@ group :test do
   gem 'database_cleaner'
   gem 'launchy'
   gem 'shoulda-matchers'
-  gem 'simplecov', require: false
-  gem 'timecop'
-end
-
-group :staging, :production do
-  gem 'newrelic_rpm'
 end
