@@ -1,3 +1,14 @@
+## Deploy
+
+Add remotes:
+
+    git remote add staging git@heroku.com:tupley-staging.git
+    git remote add production git@heroku.com:tupley-production.git
+
+Deploy:
+
+    git push {staging|production} master
+
 You look great in Suspenders
 ============================
 
