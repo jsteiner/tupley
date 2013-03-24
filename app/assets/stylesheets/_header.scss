@@ -6,6 +6,14 @@ body .wrapper > header {
     float: left;
     line-height: $base-line-height;
     margin: $base-line-height 0;
+
+    a {
+      color: #3498DB;
+
+      &:hover {
+        color: darken(#3498DB, 10%);
+      }
+    }
   }
 
   #flash {
