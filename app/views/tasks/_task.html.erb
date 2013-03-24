@@ -1,20 +1,36 @@
 <li class='task'>
-  <%= task.name %>
+  <div class='task-content'>
+    <%= task.name %>
 
-  <ul class='tags'>
-    <% task.tags.each do |tag| %>
-      <li class='tag'>
-        <%= link_to tag.name, tag_path(tag) %>
-      </li>
-    <% end %>
-  </ul>
+    <div class='description'>
+      <%= markdown task.description %>
+    </div>
 
-  <span class='delete-task'>
-    <a href="#" class='delete-link'>delete</a>
-    <span class='delete-confirmation'>
-      <a href= "#" class='cancel-link'>cancel</a>
-      /
-      <%= link_to 'destroy', task, method: :delete, class: 'destroy-link' %>
+    <ul class='tags'>
+      <% task.tags.each do |tag| %>
+        <li class='tag'>
+          <%= link_to tag.name, tag_path(tag) %>
+        </li>
+      <% end %>
+    </ul>
+
+    <a href='#' class='edit-link'>edit</a>
+
+    <span class='delete-task'>
+      <a href="#" class='delete-link'>delete</a>
+      <span class='delete-confirmation'>
+        <a href= "#" class='cancel-link'>cancel</a>
+        /
+        <%= link_to 'destroy', task, method: :delete, class: 'destroy-link' %>
+      </span>
     </span>
-  </span>
+  </div>
+
+  <%= simple_form_for task do |form| %>
+    <%= form.input :name, label: false %>
+    <%= form.input :description, label: false %>
+    <%= form.input :tag_list, label: false, input_html: { value: task.tag_list_string }%>
+    <%= form.submit value: 'save' %>
+    <a href='#' class='cancel-edit-link'>cancel</a>
+  <% end %>
 </li>

@@ -10,6 +10,13 @@ class TasksController < ApplicationController
     redirect_to :back, notice: 'Task saved successfully'
   end
 
+  def update
+    task = current_user.tasks.find(params[:id])
+    task.update_attributes(task_params)
+    current_user.tag(task, with: tag_list, on: :tags)
+    redirect_to :back, notice: 'Task saved successfully'
+  end
+
   def destroy
     task = current_user.tasks.find(params[:id])
     task.destroy

@@ -22,6 +22,19 @@ module Features
       self
     end
 
+    def edit(&block)
+      click_edit_link
+
+      instance_exec &block
+
+      within '.edit_task' do
+        fill_in 'task_name', with: name_value
+        fill_in 'task_tag_list', with: @tag_list
+        fill_in 'task_description', with: @description
+        click_button 'save'
+      end
+    end
+
     def delete
       within task_element do
         click_link 'delete'
@@ -29,8 +42,22 @@ module Features
       end
     end
 
+    def click_edit_link
+      within task_element do
+        click_link 'edit'
+      end
+    end
+
+    def cancel_edit
+      find('.cancel-edit-link').click
+    end
+
     def name(new_name)
       @name = new_name
+    end
+
+    def description(new_description)
+      @description = new_description
     end
 
     def tag_list(new_tag_list)
@@ -45,10 +72,18 @@ module Features
       task_element.has_css? 'li', text: tag
     end
 
+    def editing?
+      task_dom_element.find('.edit_task').visible?
+    end
+
     private
 
     def task_element
       task_list.find 'li', text: name_value
+    end
+
+    def task_dom_element
+      find("li:contains('#{name_value}')")
     end
 
     def task_list

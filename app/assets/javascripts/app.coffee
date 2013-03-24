@@ -12,6 +12,19 @@ jQuery ->
     delete_confirmation.siblings('.delete-link').show()
     false
 
+  $('.edit-link').click ->
+    $('.edit_task').hide()
+    $('.task-content').show()
+    $task = $(@).parents('.task')
+    $task.children('.task-content').hide()
+    $task.children('.edit_task').show()
+    false
+
+  $('.cancel-edit-link').click ->
+    $('.edit_task').hide()
+    $('.task-content').show()
+    false
+
   $('.set-default-tags').click ->
     $(@).hide()
     $(@).siblings('.edit_user').show()
