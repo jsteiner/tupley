@@ -1,0 +1,78 @@
+///////////////////////////////////////////////////////////////////////////////
+//
+//  Global Variables
+//
+///////////////////////////////////////////////////////////////////////////////
+$header-height: 75px;
+
+// Type
+///////////////////////////////////////////////////////////////////////////////
+
+//  Font Stacks
+$lato: 'Lato', $helvetica;
+$sans-serif: $lato;
+$serif: $georgia;
+
+$base-font-family: $sans-serif;
+$header-font-family: $base-font-family;
+
+// Font Sizes
+$base-font-size-small-1: 11px;
+$base-font-size-small:   13px;
+$base-font-size:         16px;
+$base-font-size-1:       18px;
+$base-font-size-2:       20px;
+$base-line-height: $base-font-size * 1.375;
+
+// Button Colors
+///////////////////////////////////////////////////////////////////////////////
+$secondary-button-top:    #4A98CB; // blue
+$secondary-button-bottom: #318ACD;
+$secondary-button-border: #276587;
+
+// Color
+///////////////////////////////////////////////////////////////////////////////
+$blue:         #2C3E50;
+$red:          #E5474D;
+$green:        #ACCA35;
+$dark-gray:    #333;
+$med-gray-1:   #545454;
+$med-gray:     #888;
+$light-gray:   #DDD;
+$light-red:    #FBE3E4;
+$light-yellow: #FFF6BF;
+$light-green:  #E6EFC2;
+
+$alert-color: #D0213E;
+
+// Background Colors
+$base-background-transparent: hsla(0, 0%, 100%, 0.37);
+$base-background-color-1: #F8F8F8;
+$base-background-color-2: #EAEAEA;
+
+//  Font Colors
+$base-font-color: $dark-gray;
+$base-font-color-2: #AAA;
+
+//  Text Link Colors
+$base-link-color:  $blue;
+$hover-link-color: darken($blue, 15%);
+
+// Border color
+$base-border-color-1: $light-gray;
+$base-border-color-2: #EEE;
+
+// Flash Colors
+$error-color:   $light-red;
+$notice-color:  $light-yellow;
+$success-color: $light-green;
+
+// Forms
+$form-border-color: $base-border-color-1;
+$form-border-color-hover: darken($base-border-color-1, 10%);
+$form-border-color-focus: $blue; //blue default
+$form-border-radius: 3px;
+$form-box-shadow-focus: darken($form-border-color-focus, 5%);
+$form-font-size: $base-font-size;
+$form-font-family: $base-font-family;
+$form-width: em(300);

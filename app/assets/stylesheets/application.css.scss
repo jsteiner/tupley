@@ -9,10 +9,16 @@
  * compiled file, but it's generally better to create a new file per style scope.
  *
  *= require_self
- *= require_tree .
  */
 
-
+@import 'normalize';
 @import 'bourbon';
+@import 'neat';
 
+@import 'base/base';
+@import 'grid-settings';
+
+@import 'header';
+@import 'clearance';
+@import 'landing';
 @import 'tasks';

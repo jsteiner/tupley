@@ -1,0 +1,27 @@
+body .wrapper > header {
+  @include outer-container;
+  background-color: #FFF;
+
+  h1 {
+    float: left;
+    line-height: $base-line-height;
+    margin: $base-line-height 0;
+  }
+
+  #flash {
+    text-align: center;
+    margin-top: 20px;
+    margin-left: auto;
+    margin-right: auto;
+    width: 400px;
+
+    #flash_notice {
+      color: $green;
+    }
+  }
+
+  div.session-links {
+    float: right;
+    margin-top: 20px;
+  }
+}

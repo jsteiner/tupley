@@ -4,26 +4,34 @@
   <meta charset="utf-8" />
   <meta name="ROBOTS" content="NOODP" />
   <title><%= page_title %></title>
+  <link href='http://fonts.googleapis.com/css?family=Lato:400,900' rel='stylesheet' type='text/css'>
   <%= stylesheet_link_tag :application, :media => 'all' %>
   <%= csrf_meta_tags %>
 </head>
 <body class="<%= body_class %>">
-  <header>
-    <h1 data-role='logo'><%= link_to 'tupley', root_path %></h1>
-    <%= render 'flashes' -%>
+  <div class='wrapper'>
+    <header>
+      <h1 data-role='logo'><%= link_to 'tupley', root_path %></h1>
+      <div class='session-links'>
+        <% if signed_in? %>
+          <%= current_user.email %>
+          <%= link_to 'Sign out', sign_out_path, method: :delete %>
+        <% else %>
+          <%= link_to 'Sign in', sign_in_path %>
+        <% end %>
+      </div>
 
-    <div class='session-links'>
-      <% if signed_in? %>
-        <%= current_user.email %>
-        <%= link_to 'Sign out', sign_out_path, method: :delete %>
-      <% else %>
-        <%= link_to 'Sign in', sign_in_path %>
-      <% end %>
+      <%= render 'flashes' -%>
+    </header>
+
+    <div class='container'>
+      <%= yield %>
     </div>
-  </header>
 
-  <%= yield %>
-
-  <%= render 'javascript' %>
+    <footer>
+      <p>&copy; <a href='http://jsteiner.me'>Josh Steiner</a> 2013</p>
+    </footer>
+    <%= render 'javascript' %>
+  </div>
 </body>
 </html>
