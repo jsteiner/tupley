@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130323180556) do
+ActiveRecord::Schema.define(:version => 20130324000945) do
 
   create_table "taggings", :force => true do |t|
     t.integer  "tag_id"
@@ -42,12 +42,13 @@ ActiveRecord::Schema.define(:version => 20130323180556) do
   add_index "tasks", ["user_id"], :name => "index_tasks_on_user_id"
 
   create_table "users", :force => true do |t|
-    t.datetime "created_at",                        :null => false
-    t.datetime "updated_at",                        :null => false
-    t.string   "email",                             :null => false
-    t.string   "encrypted_password", :limit => 128, :null => false
+    t.datetime "created_at",                                        :null => false
+    t.datetime "updated_at",                                        :null => false
+    t.string   "email",                                             :null => false
+    t.string   "encrypted_password", :limit => 128,                 :null => false
     t.string   "confirmation_token", :limit => 128
-    t.string   "remember_token",     :limit => 128, :null => false
+    t.string   "remember_token",     :limit => 128,                 :null => false
+    t.string   "default_tag_list",                  :default => "", :null => false
   end
 
   add_index "users", ["email"], :name => "index_users_on_email"

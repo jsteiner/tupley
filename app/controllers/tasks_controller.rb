@@ -1,6 +1,6 @@
 class TasksController < ApplicationController
   def index
-    @tasks = current_user.tasks
+    @tasks = current_user.default_tasks
     @tags = current_user.owned_tags
   end
 

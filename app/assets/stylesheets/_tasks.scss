@@ -1,3 +1,18 @@
 .delete-confirmation {
   display: none;
 }
+
+.edit_user {
+  display: none;
+
+  .hint {
+    width: 100%;
+  }
+
+  .button {
+    position: absolute;
+    left: -9999px;
+    width: 1px;
+    height: 1px;
+  }
+}
