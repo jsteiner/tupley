@@ -78,7 +78,7 @@ img {
 }
 
 blockquote {
-  border-left: 2px solid $base-border-color-1;
+  border-left: 2px solid $base-border-color;
   color: lighten($base-font-color, 15%);
   font-style: italic;
   margin: $base-line-height 0;

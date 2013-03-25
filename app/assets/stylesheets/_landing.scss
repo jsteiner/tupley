@@ -1,6 +1,6 @@
 .high_voltage-pages-show {
   .demo-container {
-    background-color: #3498DB;
+    background-color: $light-blue;
     margin-bottom: -5%;
 
     .demo {
@@ -24,13 +24,13 @@
   }
 
   .features-container {
-    background-color: #ECF0F1;
+    background-color: $light-white;
 
     .features {
       @include outer-container;
       padding-top: 8%;
       padding-bottom: 60px;
-      color: $blue;
+      color: $light-navy;
 
       div {
         @include span-columns(4);
@@ -44,8 +44,8 @@
   }
 
   .subscribe-container {
-    background-color: #34495E;
-    border-bottom: 1px solid #2C3E50;
+    background-color: $light-navy;
+    border-bottom: 1px solid $dark-navy;
 
     .subscribe {
       @include outer-container;
@@ -53,34 +53,27 @@
 
       .button {
         margin: 0 auto;
-        padding-top: 13px;
-        padding-bottom: 13px;
-        background-color: #E74C3C;
-        color: #FFF;
+        background-color: $light-red;
         width: 220px;
-        display: block;
-        border-radius: 6px;
-        text-align: center;
-        font-size: 20px;
         font-weight: 900;
       }
 
       .button:hover {
-        background-color: lighten(#E74C3C, 10%);
+        background-color: $dark-red;
       }
     }
   }
 
   footer {
-    border-top: 1px solid lighten(#2C3E50, 8%);
-    background-color: #34495E;
-    color: #BDC3C7;
+    border-top: 1px solid lighten($dark-navy, 8%);
+    background-color: $light-navy;
+    color: $dark-white;
 
     a {
-      color: #ECF0F1;
+      color: $light-white;
 
       &:hover {
-        color: darken(#ECF0F1, 10%);
+        color: $dark-white;
       }
     }
   }
