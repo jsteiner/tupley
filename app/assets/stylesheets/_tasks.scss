@@ -1,35 +1,65 @@
-.new_task {
-  input {
-    width: 600px;
+.tasks, .tags {
+  .container {
+    @include outer-container;
+
+    .left-container {
+      @include span-columns(9);
+
+      .new_task {
+        input[type='submit'] {
+          position: absolute;
+          left: -9999px;
+          width: 1px;
+          height: 1px;
+        }
+      }
+
+      .tasks {
+        list-style-type: none;
+
+        .name {
+          font-weight: bold;
+        }
+
+        .delete-confirmation {
+          display: none;
+        }
+
+        .edit_task {
+          display: none;
+        }
+      }
+
+      .edit_user {
+        display: none;
+
+        .hint {
+          width: 100%;
+        }
+
+        .button {
+          position: absolute;
+          left: -9999px;
+          width: 1px;
+          height: 1px;
+        }
+      }
+    }
+
+
+    .right-container {
+      @include span-columns(3);
+
+      .edit_user {
+        display: none;
+
+        input[type='submit'] {
+          position: absolute;
+          left: -9999px;
+          width: 1px;
+          height: 1px;
+        }
+      }
+    }
   }
-
-  input[type='submit'] {
-    position: absolute;
-    left: -9999px;
-    width: 1px;
-    height: 1px;
-  }
-}
-
-.delete-confirmation {
-  display: none;
-}
-
-.edit_user {
-  display: none;
-
-  .hint {
-    width: 100%;
-  }
-
-  .button {
-    position: absolute;
-    left: -9999px;
-    width: 1px;
-    height: 1px;
-  }
-}
-
-.edit_task {
-  display: none;
 }

@@ -1,6 +1,11 @@
 <li class='task'>
   <div class='task-content'>
-    <%= task.name %>
+    <label class='checkbox'>
+      <input type='checkbox'>
+      <span class='name'>
+        <%= task.name %>
+      </span>
+    </label>
 
     <div class='description'>
       <%= markdown task.description %>

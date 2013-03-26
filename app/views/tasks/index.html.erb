@@ -1,31 +1,35 @@
-<%= simple_form_for Task.new do |form| %>
-  <%= form.input :name, label: false %>
-  <%= form.input :tag_list, label: false %>
-  <%= form.submit %>
-<% end %>
-
-<ol class='tasks'>
-  <%= render @tasks %>
-</ol>
-
-<ol class='tags'>
-  <li class='tag'><%= link_to 'default tasks', root_path %></li>
-
-  <% @tags.each do |tag| %>
-    <li class='tag'>
-      <%= link_to tag.name, tag_path(tag) %>
-    </li>
+<div class='left-container'>
+  <%= simple_form_for Task.new do |form| %>
+    <%= form.input :name, label: false %>
+    <%= form.input :tag_list, label: false %>
+    <%= form.submit %>
   <% end %>
 
-  <% if current_user.tasks_without_tags.any? %>
-    <li class='tag'><%= link_to 'none', none_tag_path %></li>
-  <% end %>
+  <ol class='tasks'>
+    <%= render @tasks %>
+  </ol>
+</div>
 
-  <a href='#' class='set-default-tags'>set default tags</a>
-  <%= simple_form_for current_user, url: default_tags_path, method: :put do |form| %>
-    <%= form.input :default_tag_list, label: false %>
-    <%= form.hint 'List tags that you want to see when you first sign in. Leave this blank to show all tasks.' %>
-    <%= form.submit value: 'Update default tags' %>
-    <a href='#' class='cancel-set-default-tags'>cancel</a>
-  <% end %>
-</ol>
+<div class='right-container'>
+  <ol class='tags'>
+    <li class='tag'><%= link_to 'default tasks', root_path %></li>
+
+    <% @tags.each do |tag| %>
+      <li class='tag'>
+        <%= link_to tag.name, tag_path(tag) %>
+      </li>
+    <% end %>
+
+    <% if current_user.tasks_without_tags.any? %>
+      <li class='tag'><%= link_to 'none', none_tag_path %></li>
+    <% end %>
+
+    <a href='#' class='set-default-tags'>set default tags</a>
+    <%= simple_form_for current_user, url: default_tags_path, method: :put do |form| %>
+      <%= form.input :default_tag_list, label: false %>
+      <%= form.hint 'List tags that you want to see when you first sign in. Leave this blank to show all tasks.' %>
+      <%= form.submit value: 'Update default tags' %>
+      <a href='#' class='cancel-set-default-tags'>cancel</a>
+    <% end %>
+  </ol>
+</div>

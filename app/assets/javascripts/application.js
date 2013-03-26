@@ -13,4 +13,5 @@
 //= require jquery
 //= require jquery_ujs
 //= require jquery-ui
+//= require flat-ui-checkbox
 //= require_tree .
