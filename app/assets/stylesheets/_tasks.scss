@@ -21,8 +21,44 @@
           font-weight: bold;
         }
 
-        .delete-confirmation {
-          display: none;
+        .tags {
+          list-style: none;
+          padding: 0;
+
+          li {
+            display: inline-block;
+            margin-right: 15px;
+          }
+        }
+
+        .controls {
+          a {
+            color: $dark-white;
+
+            &:hover {
+              color: $dark-gray;
+            }
+          }
+
+          .delete-confirmation {
+            display: none;
+
+            .cancel-link {
+              color: $light-blue;
+
+              &:hover {
+                color: $dark-blue;
+              }
+            }
+
+            .destroy-link {
+              color: $light-red;
+
+              &:hover {
+                color: $dark-red;
+              }
+            }
+          }
         }
 
         .edit_task {
@@ -50,6 +86,11 @@
     .right-container {
       @include span-columns(3);
 
+      .tags {
+        list-style-type: none;
+        line-height: $base-line-height * 1.4;
+      }
+
       .edit_user {
         display: none;
 
@@ -58,6 +99,16 @@
           left: -9999px;
           width: 1px;
           height: 1px;
+        }
+      }
+    }
+
+    .tags {
+      a {
+        color: $light-gray;
+
+        &:hover {
+          color: $dark-gray;
         }
       }
     }

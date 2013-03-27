@@ -19,14 +19,16 @@
       <% end %>
     </ul>
 
-    <a href='#' class='edit-link'>edit</a>
+    <span class='controls'>
+      <a href='#' class='edit-link'>edit</a>
 
-    <span class='delete-task'>
-      <a href="#" class='delete-link'>delete</a>
-      <span class='delete-confirmation'>
-        <a href= "#" class='cancel-link'>cancel</a>
-        /
-        <%= link_to 'destroy', task, method: :delete, class: 'destroy-link' %>
+      <span class='delete-task'>
+        <a href="#" class='delete-link'>delete</a>
+        <span class='delete-confirmation'>
+          <a href= "#" class='cancel-link'>cancel</a>
+          /
+          <%= link_to 'destroy', task, method: :delete, class: 'destroy-link' %>
+        </span>
       </span>
     </span>
   </div>
