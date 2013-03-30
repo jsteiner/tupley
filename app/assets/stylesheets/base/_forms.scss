@@ -25,6 +25,11 @@ label {
   }
 }
 
+textarea {
+  height: 200px;
+  resize: vertical;
+}
+
 textarea,
 #{$all-text-inputs} {
   background-color: white;
