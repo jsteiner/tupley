@@ -64,6 +64,29 @@
     }
   }
 
+  .why-tags-container {
+    background-color: $light-turquoise;
+    color: $light-white;
+
+    .why-tags {
+      @include outer-container;
+
+      .inner-why-tags {
+        @include span-columns(6);
+        @include shift(3);
+        padding-top: 60px;
+        padding-bottom: 60px;
+
+        @include media($mobile) {
+          padding-left: 20px;
+          padding-right: 20px;
+          @include span-columns(1);
+          @include shift(0);
+        }
+      }
+    }
+  }
+
   footer {
     border-top: 1px solid lighten($dark-navy, 8%);
     background-color: $light-navy;
