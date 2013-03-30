@@ -17,52 +17,68 @@
       .tasks {
         list-style-type: none;
 
-        .name {
-          font-weight: bold;
-        }
+        .task {
+          margin-bottom: 25px;
 
-        .tags {
-          list-style: none;
-          padding: 0;
-
-          li {
-            display: inline-block;
-            margin-right: 15px;
+          .name {
+            font-weight: bold;
+            position: relative;
+            left: -60px;
           }
-        }
 
-        .controls {
-          a {
-            color: $dark-white;
-
-            &:hover {
-              color: $dark-gray;
+          .description {
+            h1, h2, h3, h4, h5, h6 {
+              font-size: em(14);
             }
           }
 
-          .delete-confirmation {
+          .tags {
+            list-style: none;
+            padding: 0;
+
+            li {
+              display: inline-block;
+              margin-right: 15px;
+            }
+          }
+
+          .controls {
+            a {
+              color: $dark-white;
+
+              &:hover {
+                color: $dark-gray;
+              }
+            }
+
+            .edit-link {
+              margin-right: 15px;
+            }
+
+            .delete-confirmation {
+              display: none;
+
+              .cancel-link {
+                color: $light-blue;
+
+                &:hover {
+                  color: $dark-blue;
+                }
+              }
+
+              .destroy-link {
+                color: $light-red;
+
+                &:hover {
+                  color: $dark-red;
+                }
+              }
+            }
+          }
+
+          .edit_task {
             display: none;
-
-            .cancel-link {
-              color: $light-blue;
-
-              &:hover {
-                color: $dark-blue;
-              }
-            }
-
-            .destroy-link {
-              color: $light-red;
-
-              &:hover {
-                color: $dark-red;
-              }
-            }
           }
-        }
-
-        .edit_task {
-          display: none;
         }
       }
 
