@@ -18,6 +18,10 @@ body .wrapper > header {
     #flash_notice {
       color: $success-color;
     }
+
+    #flash_error {
+      color: $error-color;
+    }
   }
 
   div.session-links {

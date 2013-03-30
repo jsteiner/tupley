@@ -1,6 +1,9 @@
 jQuery ->
   $('#new_task #task_name').focus()
 
+  $('#flash div').delay(2000).fadeOut 2000, ->
+    $(@).remove()
+
   $('.delete-link').click ->
     $(@).hide()
     $(@).siblings('.delete-confirmation').show()
@@ -10,6 +13,20 @@ jQuery ->
     delete_confirmation = $(@).parent()
     delete_confirmation.hide()
     delete_confirmation.siblings('.delete-link').show()
+    false
+
+  $('.destroy-link').click ->
+    $destroyLink = @
+    $(@).parents('.task').fadeOut 300, ->
+      $.ajax
+        url: $destroyLink.href
+        type: 'delete'
+        success: =>
+          $(@).remove()
+        error: ->
+          $errorMessage = $('<div id="flash_error">')
+          $errorMessage.text('Task failed to delete. Refresh the page and try again.')
+          $('#flash').append $errorMessage
     false
 
   $('.edit-link').click ->
