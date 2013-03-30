@@ -1,6 +1,5 @@
 .checkbox {
   margin-bottom: 12px;
-  padding-left: 32px;
   position: relative;
   -webkit-transition: 0.25s;
   -moz-transition: 0.25s;
@@ -10,8 +9,9 @@
   .checkbox:hover {
     cursor: pointer;
     color: #1abc9c; }
-  .checkbox input {
+  .checkbox input[type='checkbox'] {
     outline: none !important;
+    display: none;
     opacity: 0;
     filter: alpha(opacity=0);
     zoom: 1; }

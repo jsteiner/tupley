@@ -34,10 +34,13 @@
   </div>
 
   <%= simple_form_for task do |form| %>
-    <%= form.input :name, label: false %>
+    <label class='checkbox'>
+      <input type='checkbox'>
+      <%= form.input :name, label: false %>
+    </label>
     <%= form.input :description, label: false %>
     <%= form.input :tag_list, label: false, input_html: { value: task.tag_list_string }%>
-    <%= form.submit value: 'save' %>
-    <a href='#' class='cancel-edit-link'>cancel</a>
+    <a href='#' class='button cancel-edit-link'>cancel</a>
+    <%= form.submit value: 'save', class: 'save-link' %>
   <% end %>
 </li>

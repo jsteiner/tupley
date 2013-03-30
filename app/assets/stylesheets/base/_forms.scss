@@ -69,6 +69,7 @@ input[type="submit"] {
   padding: ($base-line-height * .5) ($base-line-height * .5);
   text-align: center;
   width: $form-width;
+  line-height: $base-line-height;
 
   &:hover {
     background-color: $dark-navy;
