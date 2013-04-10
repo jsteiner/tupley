@@ -52,3 +52,7 @@ jQuery ->
     default_tags_form.hide()
     default_tags_form.siblings('.set-default-tags').show()
     false
+
+  $(".task input[type='checkbox']").change ->
+    if $(@).is(':checked')
+      $(@).parents('form').submit()

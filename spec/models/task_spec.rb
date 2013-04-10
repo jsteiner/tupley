@@ -21,3 +21,17 @@ describe Task, '#tag_list_string' do
     expect(task.tag_list_string).to include ', '
   end
 end
+
+describe Task, '#complete' do
+  it "adds a completed tag to the task's tags" do
+    pending
+    user = create(:user)
+    task = create(:task)
+
+    user.tag(task, with: 'hello', on: :tags)
+    task.complete
+
+    expect(task.tag_list_string).to include 'hello'
+    expect(task.tag_list_string).to include 'completed'
+  end
+end

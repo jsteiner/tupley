@@ -42,6 +42,12 @@ module Features
       end
     end
 
+    def complete
+      within task_element do
+        check "completed_task_completed"
+      end
+    end
+
     def click_edit_link
       within task_element do
         click_link 'edit'

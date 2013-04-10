@@ -1,11 +1,13 @@
 <li class='task'>
-  <div class='task-content'>
+  <%= simple_form_for :completed_task, url: completed_task_path(task), method: :put do |form| %>
     <label class='checkbox'>
-      <input type='checkbox'>
-      <span class='name'>
-        <%= task.name %>
-      </span>
+      <%= form.input :completed, as: :boolean, label: false, wrapper: false %>
     </label>
+  <% end %>
+  <div class='task-content'>
+    <span class='name'>
+      <%= task.name %>
+    </span>
 
     <div class='description'>
       <%= markdown task.description %>
@@ -34,10 +36,7 @@
   </div>
 
   <%= simple_form_for task do |form| %>
-    <label class='checkbox'>
-      <input type='checkbox'>
-      <%= form.input :name, label: false %>
-    </label>
+    <%= form.input :name, label: false %>
     <%= form.input :description, label: false %>
     <%= form.input :tag_list, label: false, input_html: { value: task.tag_list_string }%>
     <a href='#' class='button cancel-edit-link'>cancel</a>
