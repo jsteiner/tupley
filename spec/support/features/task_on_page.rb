@@ -68,6 +68,10 @@ module Features
       task_list.has_css? 'li', text: name_value
     end
 
+    def deleted?
+      task_list.has_no_css? 'li', text: name_value
+    end
+
     def has_tag?(tag)
       task_element.has_css? 'li', text: tag
     end

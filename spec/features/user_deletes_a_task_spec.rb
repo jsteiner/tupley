@@ -1,14 +1,23 @@
 require 'spec_helper'
 
-feature 'User deletes a task', :js do
+feature 'User deletes a task via ajax', :js do
   scenario 'they no longer see the task' do
     sign_in
-
-    create_task { name 'Bake cake' }
 
     task = create_task { name 'Buy eggs' }
     task.delete
 
-    expect(task).not_to be_visible
+    expect(task).to be_deleted
+  end
+end
+
+feature 'User deletes a task' do
+  scenario 'they no longer see the task' do
+    sign_in
+
+    task = create_task { name 'Buy eggs' }
+    task.delete
+
+    expect(task).to be_deleted
   end
 end

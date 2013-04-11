@@ -23,7 +23,7 @@ class TasksController < ApplicationController
 
     respond_to do |format|
       format.html { redirect_to root_path }
-      format.js { render :nothing => true }
+      format.js { render nothing: true }
     end
   end
 
