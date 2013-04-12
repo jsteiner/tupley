@@ -14,11 +14,18 @@ feature 'User completes a task', :js do
     task = create_task
     task.complete
 
-    visit 'tags/completed'
+    click_link 'completed'
+
     expect(task).to be_visible
   end
 
-  scenario "they do not see the task on its tag's page" do
+  scenario "they do not see the task on its other tag's page" do
+    sign_in
+    task = create_task { tag_list 'shopping' }
+    task.complete
 
+    click_link 'shopping'
+
+    expect(task).not_to be_visible
   end
 end

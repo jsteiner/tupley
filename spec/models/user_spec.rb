@@ -4,6 +4,21 @@ describe User, 'associations' do
   it { should have_many :tasks }
 end
 
+describe User, '.complete_tasks' do
+  it "only returns the user's tasks with the complete tag" do
+    user = create(:user)
+    complete_task = create(:task, user: user)
+    incomplete_task = create(:task, user: user)
+    not_my_task = create(:task)
+
+    user.tag(complete_task, with: 'hello, completed', on: :tags)
+    user.tag(incomplete_task, with: 'hello', on: :tags)
+    user.tag(not_my_task, with: 'completed', on: :tags)
+
+    expect(user.complete_tasks).to eq [complete_task]
+  end
+end
+
 describe User, '#tasks_without_tags' do
   it 'returns tasks with no tags' do
     user = create(:user)
@@ -60,5 +75,18 @@ describe User, '#default_tasks' do
     user.tag(task, with: 'shopping', on: :tags)
 
     expect(user.default_tasks).to eq [task]
+  end
+end
+
+describe User, '#toggle_completion' do
+  it 'toggles the complete tag on the task' do
+    user = create(:user)
+    task = create(:task, user: user)
+    user.tag(task, with: 'hello', on: :tags)
+    expect(task.tags_from user).not_to include 'completed'
+    user.toggle_completion(task)
+    expect(task.tags_from user).to include 'completed'
+    user.toggle_completion(task)
+    expect(task.tags_from user).not_to include 'completed'
   end
 end
