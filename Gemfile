@@ -2,7 +2,6 @@ source 'https://rubygems.org'
 
 ruby '2.0.0'
 
-gem 'acts-as-taggable-on'
 gem 'clearance', '1.0.0.rc6'
 gem 'bourbon'
 gem 'flutie'

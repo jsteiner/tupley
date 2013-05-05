@@ -11,25 +11,28 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130324000945) do
+ActiveRecord::Schema.define(:version => 20130503003840) do
 
   create_table "taggings", :force => true do |t|
     t.integer  "tag_id"
-    t.integer  "taggable_id"
-    t.string   "taggable_type"
-    t.integer  "tagger_id"
-    t.string   "tagger_type"
-    t.string   "context",       :limit => 128
-    t.datetime "created_at"
+    t.integer  "task_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
   end
 
-  add_index "taggings", ["tag_id"], :name => "index_taggings_on_tag_id"
-  add_index "taggings", ["taggable_id", "taggable_type", "context"], :name => "index_taggings_on_taggable_id_and_taggable_type_and_context"
+  add_index "taggings", ["tag_id", "task_id"], :name => "index_taggings_on_tag_id_and_task_id", :unique => true
 
   create_table "tags", :force => true do |t|
-    t.string "name"
-    t.string "slug"
+    t.string   "name",                          :null => false
+    t.string   "slug",                          :null => false
+    t.boolean  "default",    :default => false, :null => false
+    t.integer  "user_id"
+    t.datetime "created_at",                    :null => false
+    t.datetime "updated_at",                    :null => false
   end
+
+  add_index "tags", ["slug"], :name => "index_tags_on_slug"
+  add_index "tags", ["user_id"], :name => "index_tags_on_user_id"
 
   create_table "tasks", :force => true do |t|
     t.string   "name",        :null => false
@@ -42,13 +45,12 @@ ActiveRecord::Schema.define(:version => 20130324000945) do
   add_index "tasks", ["user_id"], :name => "index_tasks_on_user_id"
 
   create_table "users", :force => true do |t|
-    t.datetime "created_at",                                        :null => false
-    t.datetime "updated_at",                                        :null => false
-    t.string   "email",                                             :null => false
-    t.string   "encrypted_password", :limit => 128,                 :null => false
+    t.datetime "created_at",                        :null => false
+    t.datetime "updated_at",                        :null => false
+    t.string   "email",                             :null => false
+    t.string   "encrypted_password", :limit => 128, :null => false
     t.string   "confirmation_token", :limit => 128
-    t.string   "remember_token",     :limit => 128,                 :null => false
-    t.string   "default_tag_list",                  :default => "", :null => false
+    t.string   "remember_token",     :limit => 128, :null => false
   end
 
   add_index "users", ["email"], :name => "index_users_on_email"
