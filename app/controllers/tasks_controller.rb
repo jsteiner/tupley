@@ -1,19 +1,19 @@
 class TasksController < ApplicationController
   def index
-    @tasks = current_user.default_tasks
-    @tags = current_user.owned_tags
+    @tasks = current_user.default_or_all_tasks
+    @tags = current_user.tags
   end
 
   def create
     task = current_user.tasks.create(task_params)
-    current_user.tag(task, with: tag_list, on: :tags)
+    current_user.tag(task, with: params[:task][:tag_names])
     redirect_to :back, notice: 'Task saved successfully'
   end
 
   def update
     task = current_user.tasks.find(params[:id])
     task.update_attributes(task_params)
-    current_user.tag(task, with: tag_list, on: :tags)
+    current_user.tag(task, with: params[:task][:tag_names])
     redirect_to :back, notice: 'Task saved successfully'
   end
 
@@ -31,9 +31,5 @@ class TasksController < ApplicationController
 
   def task_params
     params.require(:task).permit(:name, :description)
-  end
-
-  def tag_list
-    params[:task][:tag_list]
   end
 end

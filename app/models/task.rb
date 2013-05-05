@@ -1,11 +1,15 @@
 class Task < ActiveRecord::Base
-  acts_as_taggable
-
   belongs_to :user
+  has_many :taggings
+  has_many :tags, through: :taggings, uniq: true
 
   validates :name, presence: true
 
-  def tag_list_string
+  def self.with_default_tags
+    joins(:tags).where(tags: { default: true })
+  end
+
+  def tag_names
     tags.map(&:name).join ', '
   end
 end

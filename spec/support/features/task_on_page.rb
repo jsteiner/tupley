@@ -15,7 +15,7 @@ module Features
     def create
       within '.new_task' do
         fill_in 'task_name', with: name_value
-        fill_in 'task_tag_list', with: @tag_list
+        fill_in 'task_tag_names', with: @tags
         click_button 'Create Task'
       end
 
@@ -29,7 +29,7 @@ module Features
 
       within '.edit_task' do
         fill_in 'task_name', with: name_value
-        fill_in 'task_tag_list', with: @tag_list
+        fill_in 'task_tag_names', with: @tags
         fill_in 'task_description', with: @description
         click_button 'save'
       end
@@ -60,8 +60,8 @@ module Features
       @description = new_description
     end
 
-    def tag_list(new_tag_list)
-      @tag_list = new_tag_list
+    def tags(new_tags)
+      @tags = new_tags
     end
 
     def visible?

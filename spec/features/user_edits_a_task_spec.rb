@@ -8,7 +8,7 @@ feature 'User edits a task spec', :js do
 
     task.edit do
       name 'New name'
-      tag_list 'new tag'
+      tags 'new tag'
     end
 
     expect(page).to have_css '.tasks li', text: 'New name'
@@ -43,7 +43,7 @@ feature 'User edits a task spec', :js do
 
   scenario 'they remain on the same page' do
     sign_in
-    task = create_task { tag_list 'shopping' }
+    task = create_task { tags 'shopping' }
     visit '/tags/shopping'
 
     task.edit { name 'New name' }
