@@ -8,7 +8,7 @@ end
 
 describe Tag, '.default' do
   it 'returns only default tags' do
-    default_tag = create(:default_tag)
+    default_tag = create(:tag, :default)
     non_default_tag = create(:tag)
 
     expect(Tag.default).to eq [default_tag]

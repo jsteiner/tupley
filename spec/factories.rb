@@ -7,8 +7,20 @@ FactoryGirl.define do
   factory :tag do
     name 'Buy eggs'
 
-    factory :default_tag do
+    trait :default do
       default true
+    end
+
+    trait :shopping do
+      name 'shopping'
+    end
+
+    trait :work do
+      name 'work'
+    end
+
+    trait :todo do
+      name 'todo'
     end
   end
 end

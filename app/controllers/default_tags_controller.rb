@@ -1,7 +1,6 @@
 class DefaultTagsController < ApplicationController
   def update
-    current_user.tags.update_all(default: false)
-    current_user.tags.where(name: default_tag_names).update_all(default: true)
+    current_user.set_default_tags default_tag_names
 
     redirect_to :back
   end

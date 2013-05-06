@@ -4,21 +4,15 @@ class User < ActiveRecord::Base
   has_many :tasks
   has_many :tags
 
-  def tag(task, with: nil, with_names: nil)
-    if with.present?
-      new_tags = [*with]
-      if own?(task) && own?(new_tags)
-        begin
-          task.tags = new_tags
-        rescue ActiveRecord::RecordInvalid
-        end
-      end
-    else
-      begin
-        task.tags = TagFinder.new(self, with_names).to_tags
-      rescue ActiveRecord::RecordInvalid
-      end
+  def tag(task, with: nil)
+    if task.user == self
+      task.tags = TagFinder.new(self, with).to_tags
     end
+  end
+
+  def set_default_tags(tag_names)
+    default_tags.update_all(default: false)
+    tags.where(name: tag_names).update_all(default: true)
   end
 
   def default_or_all_tasks

@@ -1,10 +1,10 @@
 require 'spec_helper'
 
 describe TagFinder, '#to_tags' do
-  it "returns the user's existing tags for each tag name" do
+  it "returns only the user's existing tags for each tag name" do
     user = create(:user)
-    tag = create(:tag, user: user, name: 'shopping')
-    create(:tag, name: 'shopping')
+    tag = create(:tag, :shopping, user: user)
+    create(:tag, :shopping)
 
     found_tags = TagFinder.new(user, 'shopping').to_tags
 
@@ -13,8 +13,8 @@ describe TagFinder, '#to_tags' do
 
   it 'finds multiple tags' do
     user = create(:user)
-    shopping_tag = create(:tag, user: user, name: 'shopping')
-    work_tag = create(:tag, user: user, name: 'work')
+    shopping_tag = create(:tag, :shopping, user: user)
+    work_tag = create(:tag, :work, user: user)
 
     found_tags = TagFinder.new(user, 'shopping, work').to_tags
 

@@ -15,7 +15,7 @@ describe Task, '.with_default_tags' do
     default_task = create(:task)
     non_default_task = create(:task)
 
-    default_task.tags << create(:default_tag)
+    default_task.tags << create(:tag, :default)
 
     expect(Task.with_default_tags).to eq [default_task]
   end

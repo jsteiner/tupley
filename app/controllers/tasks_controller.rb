@@ -6,14 +6,14 @@ class TasksController < ApplicationController
 
   def create
     task = current_user.tasks.create(task_params)
-    current_user.tag(task, with_names: params[:task][:tag_names])
+    current_user.tag(task, with: params[:task][:tag_names])
     redirect_to :back, notice: 'Task saved successfully'
   end
 
   def update
     task = current_user.tasks.find(params[:id])
     task.update_attributes(task_params)
-    current_user.tag(task, with_names: params[:task][:tag_names])
+    current_user.tag(task, with: params[:task][:tag_names])
     redirect_to :back, notice: 'Task saved successfully'
   end
 

@@ -8,75 +8,117 @@ end
 describe User, '#tag' do
   it 'tags the task with a single tag' do
     user = create(:user)
-    tag = create(:tag, user: user)
+    work_tag = create(:tag, :work, user: user)
     task = create(:task, user: user)
 
-    user.tag(task, with: tag)
+    user.tag(task, with: 'work')
 
-    expect(task.tags).to eq [tag]
+    expect(task.tags).to eq [work_tag]
   end
 
   it 'tags the task with multiple tags' do
     user = create(:user)
-    tags = create_list(:tag, 2, user: user)
+    work_tag = create(:tag, :work, user: user)
+    todo_tag = create(:tag, :todo, user: user)
     task = create(:task, user: user)
 
-    user.tag(task, with: tags)
+    user.tag(task, with: 'work, todo')
 
-    expect(task.tags).to match_array tags
+    expect(task.tags).to match_array [work_tag, todo_tag]
   end
 
   it 'removes tags that are not in the tag list' do
     user = create(:user)
-    removed_tag = create(:tag, user: user)
-    added_tag = create(:tag, user: user)
+    todo_tag = create(:tag, :todo, user: user)
+    work_tag = create(:tag, :work, user: user)
     task = create(:task, user: user)
 
-    user.tag(task, with: removed_tag)
-    user.tag(task, with: added_tag)
+    user.tag(task, with: 'todo')
+    user.tag(task, with: 'work')
 
-    expect(task.tags).to eq [added_tag]
+    expect(task.tags).to eq [work_tag]
   end
 
   it 'does not raise when given duplicate tags' do
     user = create(:user)
-    tag = create(:tag, user: user)
+    work_tag = create(:tag, :work, user: user)
     task = create(:task, user: user)
 
     expect {
-      user.tag(task, with: [tag, tag])
+      user.tag(task, with: 'work, work')
     }.not_to raise_error ActiveRecord::RecordInvalid
   end
 
   it 'only tags tasks that are owned by the user' do
     user = create(:user)
-    tag = create(:tag, user: user)
+    tag = create(:tag, :work, user: user)
     task = create(:task)
 
-    user.tag(task, with: tag)
+    user.tag(task, with: 'work')
 
     expect(task.tags).to eq []
   end
 
   it 'only assigns tags that are owned by the user' do
     user = create(:user)
-    tag = create(:tag)
+    tag = create(:tag, :work)
     task = create(:task, user: user)
 
-    user.tag(task, with: tag)
+    user.tag(task, with: 'work')
 
-    expect(task.tags).to eq []
+    expect(task.tags).not_to include tag
+  end
+
+  it 'assigns a tag of none if there are no tags'
+  it 'creates new tags'
+  it 'assigns a comma separated string of tags'
+  it 'handles string edge cases'
+end
+
+describe User, '#set_default_tags' do
+  it "updates the user's default tags" do
+    user = create(:user)
+    original_default_tag = create(:tag, :default, user: user)
+
+    shopping_tag = create(:tag, :shopping, user: user)
+    work_tag = create(:tag, :work, user: user)
+
+    user.set_default_tags %w(shopping work)
+
+    expect(shopping_tag.reload.default).to be_true
+    expect(work_tag.reload.default).to be_true
+    expect(original_default_tag.reload.default).to be_false
+  end
+
+  it "does not update another user's defaults" do
+    user = create(:user)
+    work_tag = create(:tag, :work, user: user)
+    other_user_work_tag = create(:tag, :work)
+
+    user.set_default_tags %w(work)
+
+    expect(work_tag.reload.default).to be_true
+    expect(other_user_work_tag.reload.default).to be_false
+  end
+
+  it "updates the user's tags to no defaults" do
+    user = create(:user)
+    default_tag = create(:tag, :default, user: user)
+
+    user.set_default_tags []
+
+    expect(default_tag.reload.default).to be_false
   end
 end
 
 describe User, '#default_or_all_tasks' do
   it 'returns default tasks if there are any default tags' do
     user = create(:user)
-    default_tag = create(:default_tag, user: user)
+    default_tag = create(:tag, :default, :work, user: user)
     default_task = create(:task, user: user)
     non_default_task = create(:task, user: user)
 
-    user.tag(default_task, with: default_tag)
+    user.tag(default_task, with: 'work')
 
     expect(user.default_or_all_tasks).to eq [default_task]
   end
@@ -95,7 +137,7 @@ describe User, '#default_tasks' do
     default_task = create(:task, user: user)
     non_default_task = create(:task, user: user)
 
-    default_task.tags << create(:default_tag)
+    default_task.tags << create(:tag, :default)
 
     expect(user.default_tasks).to eq [default_task]
   end
@@ -104,7 +146,7 @@ end
 describe User, '#default_tags' do
   it 'returns only default tags' do
     user = create(:user)
-    default_tag = create(:default_tag, user: user)
+    default_tag = create(:tag, :default, user: user)
     non_default_tag = create(:tag, user: user)
 
     expect(user.default_tags).to eq [default_tag]
@@ -114,10 +156,12 @@ end
 describe User, '#default_tag_names' do
   it 'returns names of default tags' do
     user = create(:user)
-    default_tag = create(:default_tag, user: user, name: 'work')
-    default_tag = create(:default_tag, user: user, name: 'todo')
-    non_default_tag = create(:tag, user: user)
+    create(:tag, :shopping, user: user)
 
+    create(:tag, :default, :work, user: user)
+    create(:tag, :default, :todo, user: user)
+
+    expect(user.default_tag_names).not_to include 'shopping'
     expect(user.default_tag_names).to include 'work'
     expect(user.default_tag_names).to include 'todo'
     expect(user.default_tag_names).to include ', '
@@ -129,13 +173,13 @@ describe User, '#tasks_for' do
     user = create(:user)
 
     shopping_task = create(:task, user: user)
-    shopping_task.tags << create(:tag, name: 'shopping')
+    shopping_task.tags << create(:tag, :shopping)
 
     work_task = create(:task, user: user)
-    work_task.tags << create(:tag, name: 'work')
+    work_task.tags << create(:tag, :work)
 
     todo_task = create(:task, user: user)
-    todo_task.tags << create(:tag, name: 'todo')
+    todo_task.tags << create(:tag, :todo)
 
     no_tag_task = create(:task)
 
