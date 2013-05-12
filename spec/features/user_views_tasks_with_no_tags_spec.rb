@@ -8,7 +8,7 @@ feature 'User views tasks with no tags' do
 
     task_with_tags = create_task do
       name 'Buy Cake'
-      tag_list 'shopping'
+      tags 'shopping'
     end
 
     within 'ol.tags' do

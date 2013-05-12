@@ -11,7 +11,7 @@ feature 'User creates a task' do
     sign_in
 
     task = create_task do
-      tag_list 'shopping, purchases'
+      tags 'shopping, purchases'
     end
 
     expect(task).to have_tag 'shopping'
@@ -22,7 +22,7 @@ feature 'User creates a task' do
     sign_in
 
     task = create_task do
-      tag_list 'shopping, purchases'
+      tags 'shopping, purchases'
     end
 
     within 'ol.tags' do

@@ -39,7 +39,7 @@
       <%= form.input :name, label: false %>
     </label>
     <%= form.input :description, label: false %>
-    <%= form.input :tag_list, label: false, input_html: { value: task.tag_list_string }%>
+    <%= form.input :tag_names, label: false %>
     <a href='#' class='button cancel-edit-link'>cancel</a>
     <%= form.submit value: 'save', class: 'save-link' %>
   <% end %>

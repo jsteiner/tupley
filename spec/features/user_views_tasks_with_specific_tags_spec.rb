@@ -6,7 +6,7 @@ feature 'User views tasks with specific tags' do
 
     create_task do
       name 'Buy eggs'
-      tag_list 'shopping list'
+      tags 'shopping list'
     end
 
     within 'ol.tags' do
@@ -21,17 +21,17 @@ feature 'User views tasks with specific tags' do
 
     create_task do
       name 'Buy eggs'
-      tag_list 'shopping'
+      tags 'shopping'
     end
 
     create_task do
       name 'Write presentation'
-      tag_list 'work'
+      tags 'work'
     end
 
     create_task do
       name 'Read a book'
-      tag_list 'other'
+      tags 'other'
     end
 
     visit 'tags/shopping+work'
@@ -52,7 +52,8 @@ feature 'User views tasks with specific tags' do
   scenario 'they see a 404 if the tag does not belong to them' do
     sign_in
 
-    create(:task, tag_list: 'other-users-tag')
+    task = create(:task)
+    task.tags << create(:tag, name: 'other users tag')
 
     expect {
       visit 'tags/other-users-tag'
