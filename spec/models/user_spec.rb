@@ -69,10 +69,34 @@ describe User, '#tag' do
     expect(task.tags).not_to include tag
   end
 
-  it 'assigns a tag of none if there are no tags'
-  it 'creates new tags'
-  it 'assigns a comma separated string of tags'
-  it 'handles string edge cases'
+  it 'assigns a tag of none if there are no tags' do
+    user = create(:user)
+    task = create(:task, user: user)
+
+    user.tag(task, with: '')
+
+    expect(task.tags.first.name).to eq 'none'
+  end
+
+  it "creates a new tag if it doesn't exist" do
+    user = create(:user)
+    task = create(:task, user: user)
+
+    user.tag(task, with: 'work')
+
+    expect(task.tags.first.name).to eq 'work'
+  end
+
+  it 'strips out blank tag names' do
+    user = create(:user)
+    work_tag = create(:tag, :work, user: user)
+    todo_tag = create(:tag, :todo, user: user)
+    task = create(:task, user: user)
+
+    user.tag(task, with: 'work, , todo')
+
+    expect(task.tags).to match_array [work_tag, todo_tag]
+  end
 end
 
 describe User, '#set_default_tags' do
